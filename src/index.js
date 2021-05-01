@@ -1,17 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import './style.css';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+//AddPersonForm uses state to manage the value of the text field
+function AddPersonForm() {
+	const [ person, setPerson ] = useState('');
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+	function handleChange(e) {
+		setPerson(e.target.value);
+	}
+
+	function handleSubmit(e) {
+		e.preventDefault();
+	}
+	return (
+		<form onSubmit={handleSubmit}>
+			<input
+				type="text"
+				placeholder="Add new contact"
+				onChange={handleChange}
+				value={person.name}
+			/>
+			<button type="submit">Add</button>
+		</form>
+	);
+}
+
+ReactDOM.render(document.getElementById('root'));
