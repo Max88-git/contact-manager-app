@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 import './style.css';
 
+// AddPersonForm: a form with the text field and Add button
 //AddPersonForm uses state to manage the value of the text field
 function AddPersonForm() {
 	const [ person, setPerson ] = useState('');
@@ -25,5 +26,20 @@ function AddPersonForm() {
 		</form>
 	);
 }
+// PeopleList: a list of contacts
+// PeopleList received an array representing the contacts and renders a list on the page
+function PeopleList(props) {
+	const arr = props.data;
+	const listItems = arr.map((val, index) => <li key={index}>{val}</li>);
+	return <ul>{listItems}</ul>;
+}
+//Render our components on the page and include some initial data
+const contacts = [ 'James Smith', 'Thomas Anderson', 'Bruce Wayne' ];
+const el = (
+	<div>
+		<AddPersonForm />
+		<PeopleList data={contacts} />
+	</div>
+);
 
-ReactDOM.render(document.getElementById('root'));
+ReactDOM.render(el, document.getElementById('root'));
