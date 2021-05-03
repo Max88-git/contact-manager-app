@@ -17,15 +17,18 @@ function AddPersonForm(props) {
 		e.preventDefault();
 	}
 	return (
-		<form onSubmit={handleSubmit}>
-			<input
-				type="text"
-				placeholder="Add new contact"
-				onChange={handleChange}
-				value={person}
-			/>
-			<button type="submit">Add</button>
-		</form>
+		<div className="container">
+			<h1>Contact Manager</h1>
+			<form onSubmit={handleSubmit}>
+				<input
+					type="text"
+					placeholder="Add new contact"
+					onChange={handleChange}
+					value={person}
+				/>
+				<button type="submit">Add</button>
+			</form>
+		</div>
 	);
 }
 // PeopleList: a list of contacts
