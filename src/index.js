@@ -4,14 +4,16 @@ import './style.css';
 
 // AddPersonForm: a form with the text field and Add button
 // AddPersonForm uses state to manage the value of the text field
-function AddPersonForm() {
+function AddPersonForm(props) {
 	const [ person, setPerson ] = useState('');
 
 	function handleChange(e) {
 		setPerson(e.target.value);
 	}
-
+	// PeopleList calls the handleSubmit function that it received when the form is submitted, to add a new person to the list
 	function handleSubmit(e) {
+		props.handleSubmit(person);
+		setPerson(''); // Clear the value of the text field using setPerson('') after adding a new person.
 		e.preventDefault();
 	}
 	return (
@@ -20,7 +22,7 @@ function AddPersonForm() {
 				type="text"
 				placeholder="Add new contact"
 				onChange={handleChange}
-				value={person.name}
+				value={person}
 			/>
 			<button type="submit">Add</button>
 		</form>
@@ -38,17 +40,21 @@ function PeopleList(props) {
 // Then it passes down the contacts list to its child component.
 function ContactManager(props) {
 	const [ contacts, setContacts ] = useState(props.data);
+	// addPerson() function to add a new person to our contacts state array
+	function addPerson(name) {
+		setContacts([ ...contacts, name ]);
+	}
 
 	return (
 		<div>
-			<AddPersonForm />
+			<AddPersonForm handleSubmit={addPerson} />
 			<PeopleList data={contacts} />
 		</div>
 	);
 }
 //Render our components on the page and include some initial data
 const contacts = [ 'James Smith', 'Thomas Anderson', 'Bruce Wayne' ];
-
+// Display contacts inside the "root" element
 ReactDOM.render(
 	<ContactManager data={contacts} />,
 	document.getElementById('root')
