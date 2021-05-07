@@ -1,6 +1,6 @@
 # Contact Manager App
 
-A Contact Manager App which allows ou to add new contacts to a list. Built using React.js.
+A Contact Manager App which allows you to add new contacts to a list. Built using React.js.
 
 ## Setup
 
